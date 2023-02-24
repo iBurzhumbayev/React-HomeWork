@@ -1,0 +1,21 @@
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+    border: 1px solid black;
+    padding: 25px 0;
+    margin-bottom: 25px;
+    &__name {
+        font-size: 20px;
+        margin-top: 5px;
+    }
+    &__status {
+        font-size: 18px;
+        margin-top: 5px;
+    }
+    &__avatar {
+        width: 100px;
+        height: 100px;
+    }
+}
