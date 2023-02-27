@@ -2,11 +2,7 @@ import { Component } from 'react'
 import { ITodo } from '../../types'
 
 interface IAddStoreFormState {
-    name: string;
-    openAt: string;
-    closeAt: string;
-    distance: string;
-    special: boolean;
+    addStore: (store: ITodo) => void
 }
 
 class StoreAddForm extends Component<IAddStoreFormState> {
@@ -20,7 +16,6 @@ class StoreAddForm extends Component<IAddStoreFormState> {
     }
 
     onValueChange = (e: any) => {
-        // @ts-ignore
         this.setState({
             [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value
         })
@@ -43,7 +38,6 @@ class StoreAddForm extends Component<IAddStoreFormState> {
             distance: '',
             special: false
         })
-        // @ts-ignore
         this.props.addStore(newStore);
     }
 

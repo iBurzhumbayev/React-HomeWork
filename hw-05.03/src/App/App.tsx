@@ -1,9 +1,10 @@
 import { Component } from 'react'
-import { Header, StoreList, StoreAddForm } from '../components'
+import { Header, StoreList, StoreAddForm, SearchPanel } from '../components'
 import { ITodo } from '../types'
 
 interface IAppState {
     store: ITodo[]
+    term: string
 }
 
 export default class App extends Component<{}, IAppState >{
@@ -11,7 +12,7 @@ export default class App extends Component<{}, IAppState >{
         store: [
             {
                 id: 1,
-                name: "Store A",
+                name: "Magnum",
                 openAt: "09:00",
                 closeAt: "18:00",
                 distance: "5 km",
@@ -19,13 +20,14 @@ export default class App extends Component<{}, IAppState >{
             },
             {
                 id: 2,
-                name: "Store B",
+                name: "Small",
                 openAt: "08:00",
                 closeAt: "20:00",
                 distance: "10 km",
                 special: true
             }
-        ]
+        ], 
+        term: ''
     }
 
     addStore = (store: ITodo) => {
@@ -34,12 +36,29 @@ export default class App extends Component<{}, IAppState >{
         })
     }
 
+    onUpdateSearch = (term: any) => {
+		this.setState({term});
+	}
+
+    search(items: any, term: any) {
+        if(term.length === 0) {
+            return items
+        }
+
+        return items.filter((item: any) => {
+            return item.name.toLowerCase().indexOf(term.toLowerCase()) > -1
+        })
+    }
+
     render() {
+
+        const visibleItems = this.search(this.state.store, this.state.term)
 
         return (
             <div>
                 <Header title='Store list'/>
-                <StoreList store={this.state.store}/>
+                <SearchPanel onUpdateSearch={this.onUpdateSearch}/>
+                <StoreList store={visibleItems}/>
                 <StoreAddForm addStore={this.addStore}/>
             </div>
         )

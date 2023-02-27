@@ -7,7 +7,7 @@ interface ITodoListProps {
 }
 
 const StoreList: FC<ITodoListProps> = ( props : ITodoListProps ) => {
-
+    
     return (
         <table>
             <thead>
