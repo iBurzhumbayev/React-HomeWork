@@ -40,14 +40,12 @@ export default class App extends Component<{}, IAppState >{
 		this.setState({term});
 	}
 
-    search(items: any, term: any) {
+    search(items: ITodo[], term: any) {
         if(term.length === 0) {
             return items
         }
 
-        return items.filter((item: any) => {
-            return item.name.toLowerCase().indexOf(term.toLowerCase()) > -1
-        })
+        return items.filter((item: any) => item.name.toLowerCase().indexOf(term.toLowerCase()) > -1)
     }
 
     render() {
