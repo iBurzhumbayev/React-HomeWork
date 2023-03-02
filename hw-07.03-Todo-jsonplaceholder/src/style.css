@@ -1,0 +1,8 @@
+.column {
+    width: 49%;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
